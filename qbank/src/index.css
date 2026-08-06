@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Math rendering: never let equations wrap in whitespace-pre containers,
+   and keep them horizontally scrollable on narrow screens instead of
+   overflowing the page. */
+.block-math {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.35rem 0;
+  text-align: center;
+}
+.inline-math {
+  display: inline-flex;
+  align-items: center;
+}
+.katex-display {
+  margin: 0.4rem 0 !important;
+}
+.katex {
+  font-size: 1.05em;
+}
+
+/* Print: strip chrome, keep only the question content */
+@media print {
+  header, footer, nav, .print-hide { display: none !important; }
+  body { background: white !important; color: black !important; }
+  article { break-inside: avoid; border: 1px solid #ccc !important; box-shadow: none !important; }
+}
