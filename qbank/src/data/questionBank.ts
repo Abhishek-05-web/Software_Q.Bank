@@ -38,10 +38,19 @@ export const questionBank = [
     ]
   }
 ];
-export const allQuestionsFlat: any[] = (questionBank as any[]).flatMap(cls => 
-  cls.subjects ? cls.subjects.flatMap((sub: any) => 
-    sub.chapters ? sub.chapters.flatMap((ch: any) => ch.questions || []) : []
-  ) : []
-);
+export const allQuestionsFlat = () => {
+  try {
+    return questionBank.flatMap(cls => 
+      cls.subjects ? cls.subjects.flatMap((sub: any) => 
+        sub.chapters ? sub.chapters.flatMap((ch: any) => ch.questions || []) : []
+      ) : []
+    );
+  } catch (e) {
+    return [];
+  }
+};
 
-export const totalQuestionCount = allQuestionsFlat.length;
+export const totalQuestionCount = () => {
+  const all = allQuestionsFlat();
+  return all ? all.length : 0;
+};
