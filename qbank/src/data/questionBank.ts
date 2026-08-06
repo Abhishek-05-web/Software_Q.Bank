@@ -38,3 +38,6 @@ export const questionBank = [
     ]
   }
 ];
+export const allQuestionsFlat: any[] = [];
+
+export const totalQuestionCount = 0;
