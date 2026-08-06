@@ -38,6 +38,10 @@ export const questionBank = [
     ]
   }
 ];
-export const allQuestionsFlat: any[] = [];
+export const allQuestionsFlat: any[] = (questionBank as any[]).flatMap(cls => 
+  cls.subjects ? cls.subjects.flatMap((sub: any) => 
+    sub.chapters ? sub.chapters.flatMap((ch: any) => ch.questions || []) : []
+  ) : []
+);
 
-export const totalQuestionCount = 0;
+export const totalQuestionCount = allQuestionsFlat.length;
